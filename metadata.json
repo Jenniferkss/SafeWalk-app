@@ -1,0 +1,6 @@
+{
+  "name": "SafeWalk - Proteção e Tranquilidade",
+  "description": "Sua caminhada com segurança e tranquilidade. Rede ativa de proteção feminina com monitoramento em tempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

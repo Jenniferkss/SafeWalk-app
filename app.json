@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "ff429ba1-7f6e-4cd1-8acb-5a92c8d0478a"
+      }
+    },
+    "android": {
+      "package": "com.jennissk.safewalkapp"
+    }
+  }
+}

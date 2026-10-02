@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const BottomNav = ({ currentScreen, onNavigate }) => {
   const tabs = [
@@ -12,7 +19,9 @@ export const BottomNav = ({ currentScreen, onNavigate }) => {
       id: 'history',
       label: 'Histórico',
       icon: 'history',
-      isActive: currentScreen === 'history' || currentScreen === 'route-detail',
+      isActive:
+        currentScreen === 'history' ||
+        currentScreen === 'route-detail',
     },
     {
       id: 'contacts',
@@ -23,31 +32,81 @@ export const BottomNav = ({ currentScreen, onNavigate }) => {
   ];
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)] border-t border-surface-container-high/60">
-      <div className="max-w-lg mx-auto flex items-center justify-around h-18 px-4">
+    <View style={styles.nav}>
+      <View style={styles.container}>
         {tabs.map((tab) => {
           const active = tab.isActive;
+
           return (
-            <button
+            <Pressable
               key={tab.id}
-              onClick={() => onNavigate(tab.id)}
-              className={`flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 transition-all active:scale-95 ${
-                active ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'
-              }`}
+              onPress={() => onNavigate(tab.id)}
+              style={styles.tab}
             >
-              <span
-                className="material-symbols-outlined text-[24px]"
-                style={{ fontVariationSettings: active ? "'FILL' 1" : "'FILL' 0" }}
+              <MaterialIcons
+                name={tab.icon}
+                size={24}
+                color={active ? '#1739C6' : '#6B7280'}
+              />
+
+              <Text
+                style={[
+                  styles.label,
+                  active && styles.activeLabel,
+                ]}
               >
-                {tab.icon}
-              </span>
-              <span className="font-heading text-[11px] font-semibold tracking-wide mt-1">
                 {tab.label}
-              </span>
-            </button>
+              </Text>
+            </Pressable>
           );
         })}
-      </div>
-    </nav>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  nav: {
+    width: '100%',
+    backgroundColor: 'rgba(255,255,255,0.96)',
+    borderTopWidth: 1,
+    borderTopColor: '#EAEAEA',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.04,
+    shadowRadius: 12,
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+  },
+
+  container: {
+    height: 72,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+
+  tab: {
+    minWidth: 64,
+    minHeight: 48,
+    paddingVertical: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  label: {
+    marginTop: 4,
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 0.5,
+    color: '#6B7280',
+  },
+
+  activeLabel: {
+    color: '#1739C6',
+    fontWeight: '700',
+  },
+});

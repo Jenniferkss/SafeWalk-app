@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { ScreenSwitcher } from './components/ScreenSwitcher';
-import { INITIAL_CONTACTS, INITIAL_ROUTES, INITIAL_USER } from './data/mockData';
-import { ActiveRouteScreen } from './screens/ActiveRouteScreen';
-import { ContactsScreen } from './screens/ContactsScreen';
-import { EmergencyHelpScreen } from './screens/EmergencyHelpScreen';
-import { GpsUnavailableScreen } from './screens/GpsUnavailableScreen';
-import { HistoryScreen } from './screens/HistoryScreen';
-import { HomeScreen } from './screens/HomeScreen';
-import { LoginScreen } from './screens/LoginScreen';
-import { MotionAlertScreen } from './screens/MotionAlertScreen';
-import { PermissionsScreen } from './screens/PermissionsScreen';
-import { RouteDetailScreen } from './screens/RouteDetailScreen';
-import { RouteSummaryScreen } from './screens/RouteSummaryScreen';
+
+import { ScreenSwitcher } from './src/components/ScreenSwitcher';
+import {
+  INITIAL_CONTACTS,
+  INITIAL_ROUTES,
+  INITIAL_USER,
+} from './src/data/mockData';
+
+import { ActiveRouteScreen } from './src/screens/ActiveRouteScreen';
+import { ContactsScreen } from './src/screens/ContactsScreen';
+import { EmergencyHelpScreen } from './src/screens/EmergencyHelpScreen';
+import { GpsUnavailableScreen } from './src/screens/GpsUnavailableScreen';
+import { HistoryScreen } from './src/screens/HistoryScreen';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { LoginScreen } from './src/screens/LoginScreen';
+import { MotionAlertScreen } from './src/screens/MotionAlertScreen';
+import { PermissionsScreen } from './src/screens/PermissionsScreen';
+import { RouteDetailScreen } from './src/screens/RouteDetailScreen';
+import { RouteSummaryScreen } from './src/screens/RouteSummaryScreen';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('home');
@@ -28,14 +34,15 @@ export default function App() {
   const navigateTo = (screen) => {
     setScreenHistory((prev) => [...prev, screen]);
     setCurrentScreen(screen);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const goBack = () => {
     if (screenHistory.length > 1) {
       const newHistory = [...screenHistory];
       newHistory.pop();
+
       const prevScreen = newHistory[newHistory.length - 1];
+
       setScreenHistory(newHistory);
       setCurrentScreen(prevScreen);
     } else {
@@ -49,16 +56,19 @@ export default function App() {
       ...newContactData,
       id: Date.now().toString(),
     };
+
     setContacts((prev) => [newContact, ...prev]);
   };
 
   const handleDeleteContact = (id) => {
-    setContacts((prev) => prev.filter((c) => c.id !== id));
+    setContacts((prev) => prev.filter((contact) => contact.id !== id));
   };
 
   const handleEditContact = (id, updated) => {
     setContacts((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, ...updated } : c))
+      prev.map((contact) =>
+        contact.id === id ? { ...contact, ...updated } : contact
+      )
     );
   };
 
@@ -79,8 +89,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-on-surface antialiased font-sans selection:bg-primary-fixed selection:text-on-primary-fixed">
-      {/* Active Screen Rendering */}
+    <>
       {currentScreen === 'login' && (
         <LoginScreen
           onSuccess={(next) => navigateTo(next)}
@@ -189,13 +198,12 @@ export default function App() {
         />
       )}
 
-      {/* Screen Switcher Drawer for quick inspection of all 11 screens */}
       <ScreenSwitcher
         isOpen={isSwitcherOpen}
         onClose={() => setIsSwitcherOpen(false)}
         currentScreen={currentScreen}
         onSelectScreen={(screen) => navigateTo(screen)}
       />
-    </div>
+    </>
   );
 }

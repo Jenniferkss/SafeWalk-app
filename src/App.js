@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState } from 'react';
 import { ScreenSwitcher } from './components/ScreenSwitcher';
 import { INITIAL_CONTACTS, INITIAL_ROUTES, INITIAL_USER } from './data/mockData';
@@ -17,21 +12,20 @@ import { MotionAlertScreen } from './screens/MotionAlertScreen';
 import { PermissionsScreen } from './screens/PermissionsScreen';
 import { RouteDetailScreen } from './screens/RouteDetailScreen';
 import { RouteSummaryScreen } from './screens/RouteSummaryScreen';
-import { Contact, RouteRecord, ScreenType, UserProfile } from './types';
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<ScreenType>('home');
-  const [screenHistory, setScreenHistory] = useState<ScreenType[]>(['home']);
+  const [currentScreen, setCurrentScreen] = useState('home');
+  const [screenHistory, setScreenHistory] = useState(['home']);
   const [isSwitcherOpen, setIsSwitcherOpen] = useState(false);
 
   // App Data State
-  const [user, setUser] = useState<UserProfile>(INITIAL_USER);
-  const [contacts, setContacts] = useState<Contact[]>(INITIAL_CONTACTS);
-  const [routes, setRoutes] = useState<RouteRecord[]>(INITIAL_ROUTES);
-  const [selectedRoute, setSelectedRoute] = useState<RouteRecord>(INITIAL_ROUTES[0]);
-  const [activeDestination, setActiveDestination] = useState<string>('Casa');
+  const [user, setUser] = useState(INITIAL_USER);
+  const [contacts, setContacts] = useState(INITIAL_CONTACTS);
+  const [routes, setRoutes] = useState(INITIAL_ROUTES);
+  const [selectedRoute, setSelectedRoute] = useState(INITIAL_ROUTES[0]);
+  const [activeDestination, setActiveDestination] = useState('Casa');
 
-  const navigateTo = (screen: ScreenType) => {
+  const navigateTo = (screen) => {
     setScreenHistory((prev) => [...prev, screen]);
     setCurrentScreen(screen);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,36 +44,36 @@ export default function App() {
   };
 
   // Contact actions
-  const handleAddContact = (newContactData: Omit<Contact, 'id'>) => {
-    const newContact: Contact = {
+  const handleAddContact = (newContactData) => {
+    const newContact = {
       ...newContactData,
       id: Date.now().toString(),
     };
     setContacts((prev) => [newContact, ...prev]);
   };
 
-  const handleDeleteContact = (id: string) => {
+  const handleDeleteContact = (id) => {
     setContacts((prev) => prev.filter((c) => c.id !== id));
   };
 
-  const handleEditContact = (id: string, updated: Partial<Contact>) => {
+  const handleEditContact = (id, updated) => {
     setContacts((prev) =>
       prev.map((c) => (c.id === id ? { ...c, ...updated } : c))
     );
   };
 
   // Route actions
-  const handleStartRoute = (destination: string = 'Casa') => {
+  const handleStartRoute = (destination = 'Casa') => {
     setActiveDestination(destination);
     navigateTo('active-route');
   };
 
-  const handleRepeatRoute = (route: RouteRecord) => {
+  const handleRepeatRoute = (route) => {
     setActiveDestination(route.destination);
     navigateTo('active-route');
   };
 
-  const handleSelectRouteFromHistory = (route: RouteRecord) => {
+  const handleSelectRouteFromHistory = (route) => {
     setSelectedRoute(route);
     navigateTo('route-detail');
   };

@@ -1,14 +1,6 @@
 import React from 'react';
-import { ScreenType } from '../types';
 
-interface ScreenSwitcherProps {
-  isOpen: boolean;
-  onClose: () => void;
-  currentScreen: ScreenType;
-  onSelectScreen: (screen: ScreenType) => void;
-}
-
-export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
+export const ScreenSwitcher = ({
   isOpen,
   onClose,
   currentScreen,
@@ -16,7 +8,7 @@ export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const screens: { id: ScreenType; name: string; category: string; icon: string }[] = [
+  const screens = [
     { id: 'login', name: '1. Login & Cadastro', category: 'Acesso', icon: 'login' },
     { id: 'permissions', name: '2. Permissões Necessárias', category: 'Configuração', icon: 'verified_user' },
     { id: 'home', name: '3. Início (Home)', category: 'Principal', icon: 'home' },

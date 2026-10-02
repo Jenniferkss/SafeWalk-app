@@ -1,27 +1,21 @@
 import React from 'react';
-import { ScreenType } from '../types';
 
-interface BottomNavProps {
-  currentScreen: ScreenType;
-  onNavigate: (screen: ScreenType) => void;
-}
-
-export const BottomNav: React.FC<BottomNavProps> = ({ currentScreen, onNavigate }) => {
+export const BottomNav = ({ currentScreen, onNavigate }) => {
   const tabs = [
     {
-      id: 'home' as ScreenType,
+      id: 'home',
       label: 'Início',
       icon: 'shield',
       isActive: currentScreen === 'home',
     },
     {
-      id: 'history' as ScreenType,
+      id: 'history',
       label: 'Histórico',
       icon: 'history',
       isActive: currentScreen === 'history' || currentScreen === 'route-detail',
     },
     {
-      id: 'contacts' as ScreenType,
+      id: 'contacts',
       label: 'Contatos',
       icon: 'group',
       isActive: currentScreen === 'contacts',

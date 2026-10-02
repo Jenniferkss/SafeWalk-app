@@ -1,17 +1,7 @@
 import React from 'react';
 import { SAFEWALK_ASSETS } from '../data/mockData';
-import { ScreenType } from '../types';
 
-interface HeaderProps {
-  subtitle?: string;
-  onBack?: () => void;
-  showBack?: boolean;
-  avatarUrl?: string;
-  onOpenScreenSwitcher?: () => void;
-  currentScreen?: ScreenType;
-}
-
-export const Header: React.FC<HeaderProps> = ({
+export const Header = ({
   subtitle = 'Home',
   onBack,
   showBack = false,

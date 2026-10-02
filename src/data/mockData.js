@@ -1,12 +1,10 @@
-import { Contact, RouteRecord, UserProfile } from '../types';
-
 export const SAFEWALK_ASSETS = {
   logoMain: 'https://lh3.googleusercontent.com/aida/AEtjO1X-oAkJVESQ4HlxOaBHRfwjVVDoMHa79zSZVg_GckYwmJ7gJjffPgJNmDUu6u4gqxovZZiJlRgcn2Ny4gmQxMAjzr5YXGg2zCP-JvxZVFxUPobNsWNPS7kviBYHSEh7WWhGGwmUDRnhiAmALfcRM0X1rP0lm3d6tJkgrMSGwF3IMwlo_VA4i-3PYw1zJqVtXa-lBmU0W5d_GoR8k7FpDybqLVk2anFImCNi5wUOnpyE23DkUMqdPBIQXg',
   logoShield: 'https://lh3.googleusercontent.com/aida/AEtjO1X-AdGFYOVyHlVbShqUn5Priz1kA80OQhGQKceBDHCe5V9yLsq_tuPNsnaB2Hb2RpRlUxdK405Q4xxM6E7g0TZxV6x_2g8IdTqQs6PK2cMhLQ-wnHUk3gLxgFx9QXG7RV2QDaGpT3BwtXDODX0EnTAA09KBSgzKnA7jZxfBEOhT2-xOMjJHDBA5ibUCjnc0JvZIWJhaVyv2Zb7hvTzrbRGVNkshYFZiAHFpoED7FkD9BGliajgnPNlFPfo',
   userSofia: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB6WVcfsmwIuU8viedwV_ZC1CNbijRmQyKNZAyLrUwn4YqcX9Awhz49DPtjgI1zlLXTUwZuF88zpxSbn5Ba4kJuCBEmWjekM1Q2G-vEh7zecWmG5kb52gbvPwgtNDL12mviaY-lu5x-aAPvy5PrlPEznQE9aRaeSrc-YK96f4xxwN4kMr7tAGKS5W-F2cRrEF2OSduwk8Cnjth9rmjCPuNSAmOvOcc8plN_EfftqIDMi4qHe1DlHnUewQKTfNLz8arNTQ',
 };
 
-export const INITIAL_USER: UserProfile = {
+export const INITIAL_USER = {
   name: 'Sofia',
   email: 'sofia@exemplo.com',
   phone: '(11) 98123-4567',
@@ -14,7 +12,7 @@ export const INITIAL_USER: UserProfile = {
   avatarUrl: SAFEWALK_ASSETS.userSofia,
 };
 
-export const INITIAL_CONTACTS: Contact[] = [
+export const INITIAL_CONTACTS = [
   {
     id: '1',
     name: 'Maria',
@@ -53,7 +51,7 @@ export const INITIAL_CONTACTS: Contact[] = [
   },
 ];
 
-export const INITIAL_ROUTES: RouteRecord[] = [
+export const INITIAL_ROUTES = [
   {
     id: 'route-1',
     title: 'Casa → Escola',
